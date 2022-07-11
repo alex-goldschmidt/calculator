@@ -1,0 +1,12 @@
+.container {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin-top: 200px;
+    grid-template-columns: repeat(3, 106.25px);
+}
+
+.calculator-display {
+    display: flex;
+}
+

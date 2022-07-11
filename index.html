@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+<div class="container">
+    <div class="calculator-display">
+        <div class="previous-operand">3214_</div>
+        <div class="current-operand">324324</div>
+      </div>
+    <button class="number">9</button>
+    <button class="number">8</button>
+    <button class="number">7</button>
+    <button class="number">6</button>
+    <button class="number">5</button>
+    <button class="number">4</button>
+    <button class="number">3</button>
+    <button class="number">2</button>
+    <button class="number">1</button>
+    <button class="number">0</button>
+    <button class="operator">+</button>
+    <button class="operator">-</button>
+    <button class="operator">*</button>
+    <button class="operator">/</button>
+    <button class="equals-button">=</button>
+    <button class="clear-button">C</button>
+    
+</div>
+        <script>
+const container = document.querySelector(".container"); 
+
+const numberButton = document.querySelectorAll('.number');
+const operatorButton = document.querySelectorAll('.operator');
+const clearButton = document.querySelector('.clear-button');
+const equalsButton = document.querySelector('.equals-button');
+const currentOperand = document.querySelector('.current-operand');
+const previousOperand = document.querySelector('.previous-operand');
+
+currentOperand.textContent = ' ';
+previousOperand.textContent = ' ';
+
+
+function add (num1, num2) {   //add//
+    return num1 + num2;
+}
+
+function subtraction (num1, num2) {   //subtract//
+    return num1 - num2;
+}
+
+function multiply (num1, num2) {  //multiply//
+    return num1 * num2;
+}
+
+function divide (num1, num2) {  //divide//
+    return num1 / num2;
+}
+
+function operate (num1, num2, operator) {  //takes 2 numbers and operator//
+    if (operator === "+") {
+        return add(num1, num2);
+    }
+    else if (operator === "-") {
+        return subtract(num1, num2);
+    }
+    else if (operator === "*") {
+        return multiply(num1, num2);
+    }
+    else if (operator === "/"){
+        return divide(num1, num2);
+    }
+}
+
+numberButton.forEach((number) => {
+  number.addEventListener('click', function() {
+    storedNumber += number.value;
+    currentOperand.textContent = storedNumber;
+  })
+});
+
+operatorButton.addEventListener('click', e => {
+
+})
+
+clearButton.addEventListener('click', e => {
+
+})
+
+equalsButton.addEventListener('click', e => {
+
+})
+
+        </script>
+    </body>
+</html>
