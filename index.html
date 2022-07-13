@@ -10,7 +10,9 @@
     </head>
     <body>
 <div class="container">
-    <div class="calculator-display" disabled=>0</div>
+    <div class="row">
+        <div class="calculator-display"></div> 
+    </div>
     <button class="number" data-value="9">9</button>
     <button class="number" data-value="8">8</button>
     <button class="number" data-value="7">7</button>
@@ -95,39 +97,57 @@ let firstNumber = '';
 let result = '';
 //currentOperand.textContent = 0;
 //operatorButton.textContent = 0;
-display.textContent = 0;
+display.textContent = '';
 
-
+//click number --> get data value 
 numberButton.forEach((number) => {
   number.addEventListener('click', (e) => {
     storedNumber += number.value;
     display.textContent = storedNumber;
     console.log(display);
     console.log('e', e.target.dataset.value)
+    const value = e.target.dataset.value
+    display.innerText = value;
 ;  })
 });
 
+//click operator --> get data value 
 operatorButton.forEach((operator) => {
   operator.addEventListener('click', (e) => {
+    const value = e.target.dataset.value
+    display.innerText = value;
     console.log(display);
     console.log('e', e.target.dataset.value)
 ;  })
 });
 
+//click clear--> get data value 
 document.querySelector('.clear-button').addEventListener('click', (e) => {
     console.log(display);
-    console.log('e', e.target.dataset.value)
+    console.log('e', e.target.dataset.value);
+    const value = e.target.dataset.value
+    display.innerText = value;
 });
 
+//click delete --> get data value 
 document.querySelector('.delete-button').addEventListener('click', (e) => {
     console.log(display);
     console.log('e', e.target.dataset.value)
+    const value = e.target.dataset.value
+    display.innerText = value;
 });
 
+//click equals --> get data value 
 document.querySelector('.equals-button').addEventListener('click', (e) => {
     console.log(display);
     console.log('e', e.target.dataset.value)
+    const value = e.target.dataset.value
+    display.innerText = value;
 });
+
+
+
+
 
         </script>
     </body>

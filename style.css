@@ -8,5 +8,9 @@
 
 .calculator-display {
     display: flex;
+    background: lightgray;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
 }
 
