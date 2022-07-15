@@ -27,7 +27,7 @@
     <button class="operator" data-value="-">-</button>
     <button class="operator" data-value="*">*</button>
     <button class="operator" data-value="/">/</button>
-    <button class="equals-button" data-value="=">=</button>
+    <button class="operator" data-value="=">=</button>
     <button class="clear-button" data-value="C">C</button>
     <button class="delete-button" data-value="DEL">DEL</button>
     
@@ -38,9 +38,7 @@ const container = document.querySelector(".container");
 const numberButton = document.querySelectorAll('.number');
 const operatorButton = document.querySelectorAll('.operator');
 const clearButton = document.querySelector('.clear-button');
-const equalsButton = document.querySelector('.equals-button');
-//const currentOperand = document.querySelector('.current-operand');
-//const previousOperand = document.querySelector('.previous-operand');
+
 const display = document.querySelector('.calculator-display');
 const buttons = document.querySelectorAll('.button');
 
@@ -52,9 +50,6 @@ for (selectButton of selectButtons) {
     selectButton.style.backgroundColor = "#00FFFF";
 }
 
-
-//currentOperand.textContent = ' ';
-//previousOperand.textContent = ' ';
 display.textContent = ' ';
 operatorButton.textContent = ' ';
 
@@ -91,25 +86,9 @@ function operate (num1, num2, operator) {  //takes 2 numbers and operator//
 }
 
 // make button appear in console upon click //
-let storedNumber = '';
-let clickedOperator = '';
-let firstNumber = '';
-let result = '';
-//currentOperand.textContent = 0;
-//operatorButton.textContent = 0;
 display.textContent = '';
 
-//click number --> get data value 
-numberButton.forEach((number) => {
-  number.addEventListener('click', (e) => {
-    storedNumber += number.value;
-    display.textContent = storedNumber;
-    console.log(display);
-    console.log('e', e.target.dataset.value)
-    const value = e.target.dataset.value
-    display.innerText = value;
-;  })
-});
+
 
 //click operator --> get data value 
 operatorButton.forEach((operator) => {
@@ -117,33 +96,79 @@ operatorButton.forEach((operator) => {
     const value = e.target.dataset.value
     display.innerText = value;
     console.log(display);
-    console.log('e', e.target.dataset.value)
 ;  })
 });
 
+
+
 //click clear--> get data value 
 document.querySelector('.clear-button').addEventListener('click', (e) => {
-    console.log(display);
-    console.log('e', e.target.dataset.value);
     const value = e.target.dataset.value
     display.innerText = value;
+    console.log(display);
 });
 
 //click delete --> get data value 
 document.querySelector('.delete-button').addEventListener('click', (e) => {
-    console.log(display);
-    console.log('e', e.target.dataset.value)
     const value = e.target.dataset.value
     display.innerText = value;
+    console.log(display);
 });
 
-//click equals --> get data value 
-document.querySelector('.equals-button').addEventListener('click', (e) => {
-    console.log(display);
-    console.log('e', e.target.dataset.value)
-    const value = e.target.dataset.value
-    display.innerText = value;
+//Store values in calculator//
+
+let firstNum = "";
+let secondNum = "";
+let operator = "";
+
+
+numberButton.forEach(number => {
+    number.addEventListener("click", e => {
+        if (operator == "") { // Read first number if no operator set yet
+            const value = e.target.dataset.value
+            firstNum += value;
+            display.innerText += value;
+            currentValue=parseInt(display.innerText);
+            console.log(firstNum);
+        }
+    });
 });
+
+operatorButton.forEach(operator => {
+    operator.addEventListener("click", e => {
+        if (e.target.innerText !== "=") { // If the operator is not equals
+            operator = e.target.innerText;
+
+            console.log(firstNum); // Print the first number
+            console.log(operator); // Print the operator
+
+        } else { // If equals button clicked
+            console.log(secondNum); // Print 2nd number
+
+            switch (operator) { // Calculate and print output
+                case "+":
+                    console.log(parseInt(firstNum) + parseInt(secondNum));
+                    break;
+
+                case "-":
+                    console.log(parseInt(firstNum) - parseInt(secondNum));
+                    break;
+
+                // etc...
+
+                default:
+                    break;
+            }
+        }
+
+    });
+});
+
+
+
+
+
+
 
 
 
