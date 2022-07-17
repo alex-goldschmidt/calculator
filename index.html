@@ -10,9 +10,8 @@
     </head>
     <body>
 <div class="container">
-    <div class="row">
-        <div class="calculator-display"></div> 
-    </div>
+        <div class="calculator-display">
+        </div>       
     <button class="number" data-value="9">9</button>
     <button class="number" data-value="8">8</button>
     <button class="number" data-value="7">7</button>
@@ -40,9 +39,10 @@ const operatorButton = document.querySelectorAll('.operator');
 const clearButton = document.querySelector('.clear-button');
 
 const display = document.querySelector('.calculator-display');
-const buttons = document.querySelectorAll('.button');
 
+const buttons = document.querySelectorAll('.button');
 const selectButtons = document.getElementsByTagName("button")
+
 
 for (selectButton of selectButtons) {
     selectButton.style.height = "80px";
@@ -70,7 +70,7 @@ function divide (num1, num2) {  //divide//
     return num1 / num2;
 }
 
-function operate (num1, num2, operator) {  //takes 2 numbers and operator//
+function operate (operator, num1, num2) {  //takes 2 numbers and operator//
     if (operator === "+") {
         return add(num1, num2);
     }
@@ -84,22 +84,6 @@ function operate (num1, num2, operator) {  //takes 2 numbers and operator//
         return divide(num1, num2);
     }
 }
-
-// make button appear in console upon click //
-display.textContent = '';
-
-
-
-//click operator --> get data value 
-operatorButton.forEach((operator) => {
-  operator.addEventListener('click', (e) => {
-    const value = e.target.dataset.value
-    display.innerText = value;
-    console.log(display);
-;  })
-});
-
-
 
 //click clear--> get data value 
 document.querySelector('.clear-button').addEventListener('click', (e) => {
@@ -120,26 +104,32 @@ document.querySelector('.delete-button').addEventListener('click', (e) => {
 let firstNum = "";
 let secondNum = "";
 let operator = "";
+let currentValue = 0;
+let finalSum = 0;
 
 
 numberButton.forEach(number => {
     number.addEventListener("click", e => {
-        if (operator == "") { // Read first number if no operator set yet
+        if (operator === "") { // Read first number if no operator set yet
             const value = e.target.dataset.value
-            firstNum += value;
-            display.innerText += value;
-            currentValue=parseInt(display.innerText);
-            console.log(firstNum);
+            display.textContent += value;
+            currentValue = +display.textContent;
+            console.log(currentValue);
+        } else { // Read second number
+            secondNum += e.target.innerText;
         }
     });
 });
 
 operatorButton.forEach(operator => {
     operator.addEventListener("click", e => {
+        const value = e.target.dataset.value
+        display.textContent = value;
+        console.log(display);
         if (e.target.innerText !== "=") { // If the operator is not equals
             operator = e.target.innerText;
 
-            console.log(firstNum); // Print the first number
+            console.log(currentValue); // Print the first number
             console.log(operator); // Print the operator
 
         } else { // If equals button clicked
@@ -163,17 +153,6 @@ operatorButton.forEach(operator => {
 
     });
 });
-
-
-
-
-
-
-
-
-
-
-
         </script>
     </body>
 </html>
@@ -191,5 +170,19 @@ numberButton.forEach((number) => {
 });
 
 
+click operator = get data value 
+operatorButton.forEach((operator) => {
+    operator.addEventListener('click', (e) => {
+      const value = e.target.dataset.value
+      display.innerText = value;
+      console.log(display);
+  ;  })
+  });
+
+  const value = e.target.dataset.value
+            firstNum += value;
+            display.textContent += value;
+            currentValue = +display.textContent;
+            console.log(firstNum);
 
 -->
