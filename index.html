@@ -111,40 +111,49 @@ let finalSum = 0;
 numberButton.forEach(number => {
     number.addEventListener("click", e => {
         if (operator === "") { // Read first number if no operator set yet
-            const value = e.target.dataset.value
+            const value = e.target.dataset.value;
             display.textContent += value;
-            currentValue = +display.textContent;
-            console.log(currentValue);
+            firstNum = display.textContent;
+            console.log(firstNum);
         } else { // Read second number
             secondNum += e.target.innerText;
+            display.textContent = secondNum;
+            console.log(secondNum);
         }
     });
 });
 
-operatorButton.forEach(operator => {
-    operator.addEventListener("click", e => {
-        const value = e.target.dataset.value
+operatorButton.forEach(op => {
+    op.addEventListener("click", e => {
+        const value = e.target.dataset.value;
         display.textContent = value;
-        console.log(display);
         if (e.target.innerText !== "=") { // If the operator is not equals
-            operator = e.target.innerText;
+            operator = e.target.textContent;
 
-            console.log(currentValue); // Print the first number
-            console.log(operator); // Print the operator
+            console.log(firstNum); // Print the first number
+            console.log(operator); // Print the operator 
 
         } else { // If equals button clicked
-            console.log(secondNum); // Print 2nd number
-
             switch (operator) { // Calculate and print output
                 case "+":
                     console.log(parseInt(firstNum) + parseInt(secondNum));
+                    display.innerText = `${parseInt(firstNum) + parseInt(secondNum)}`;
                     break;
 
                 case "-":
                     console.log(parseInt(firstNum) - parseInt(secondNum));
+                    display.innerText = `${parseInt(firstNum) - parseInt(secondNum)}`;
                     break;
 
-                // etc...
+                case "*":
+                    console.log(parseInt(firstNum) * parseInt(secondNum));
+                    display.innerText = `${parseInt(firstNum) * parseInt(secondNum)}`;
+                    break;
+
+                case "/":
+                    console.log(parseInt(firstNum) / parseInt(secondNum));
+                    display.innerText = `${parseInt(firstNum) / parseInt(secondNum)}`;
+                    break;
 
                 default:
                     break;
