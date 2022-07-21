@@ -27,7 +27,7 @@
     <button class="operator" data-value="*">*</button>
     <button class="operator" data-value="/">/</button>
     <button class="operator" data-value="=">=</button>
-    <button class="clear-button" data-value="C">C</button>
+    <button class="clear-button" data-value="C">AC</button>
     <button class="delete-button" data-value="DEL">DEL</button>
     
 </div>
@@ -37,6 +37,7 @@ const container = document.querySelector(".container");
 const numberButton = document.querySelectorAll('.number');
 const operatorButton = document.querySelectorAll('.operator');
 const clearButton = document.querySelector('.clear-button');
+const decimalButton = document.querySelector('.decimal');
 
 const display = document.querySelector('.calculator-display');
 
@@ -50,7 +51,7 @@ for (selectButton of selectButtons) {
     selectButton.style.backgroundColor = "#00FFFF";
 }
 
-display.textContent = ' ';
+display.textContent = '';
 operatorButton.textContent = ' ';
 
 
@@ -86,16 +87,11 @@ function operate (operator, num1, num2) {  //takes 2 numbers and operator//
 }
 
 //click clear--> get data value 
-document.querySelector('.clear-button').addEventListener('click', (e) => {
-    const value = e.target.dataset.value
-    display.innerText = value;
-    console.log(display);
-});
-
-//click delete --> get data value 
-document.querySelector('.delete-button').addEventListener('click', (e) => {
-    const value = e.target.dataset.value
-    display.innerText = value;
+clearButton.addEventListener('click', e => {
+    firstNum = "";
+    secondNum = "";
+    operator = "";
+    display.innerText = '';
     console.log(display);
 });
 
@@ -104,9 +100,6 @@ document.querySelector('.delete-button').addEventListener('click', (e) => {
 let firstNum = "";
 let secondNum = "";
 let operator = "";
-let currentValue = 0;
-let finalSum = 0;
-
 
 numberButton.forEach(number => {
     number.addEventListener("click", e => {
@@ -130,7 +123,6 @@ operatorButton.forEach(op => {
         if (e.target.innerText !== "=") { // If the operator is not equals
             operator = e.target.textContent;
 
-            console.log(firstNum); // Print the first number
             console.log(operator); // Print the operator 
 
         } else { // If equals button clicked
