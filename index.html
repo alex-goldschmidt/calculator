@@ -111,7 +111,7 @@ numberButton.forEach(number => {
         } else { // Read second number
             secondNum += e.target.dataset.value;
             parseInt(secondNum);
-            display.textContent += " " + secondNum;
+            display.textContent = " " + secondNum;
             console.log(secondNum);
     }});
 });
