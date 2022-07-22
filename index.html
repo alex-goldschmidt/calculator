@@ -28,7 +28,6 @@
     <button class="operator" data-value="/">/</button>
     <button class="operator" data-value="=">=</button>
     <button class="clear-button" data-value="C">AC</button>
-    <button class="delete-button" data-value="DEL">DEL</button>
     
 </div>
         <script>
@@ -37,7 +36,6 @@ const container = document.querySelector(".container");
 const numberButton = document.querySelectorAll('.number');
 const operatorButton = document.querySelectorAll('.operator');
 const clearButton = document.querySelector('.clear-button');
-const decimalButton = document.querySelector('.decimal');
 
 const display = document.querySelector('.calculator-display');
 
@@ -101,6 +99,8 @@ let firstNum = "";
 let secondNum = "";
 let operator = "";
 
+
+
 numberButton.forEach(number => {
     number.addEventListener("click", e => {
         if (operator === "") { // Read first number if no operator set yet
@@ -109,11 +109,11 @@ numberButton.forEach(number => {
             firstNum = display.textContent;
             console.log(firstNum);
         } else { // Read second number
-            secondNum += e.target.innerText;
-            display.textContent = secondNum;
+            secondNum += e.target.dataset.value;
+            parseInt(secondNum);
+            display.textContent += " " + secondNum;
             console.log(secondNum);
-        }
-    });
+    }});
 });
 
 operatorButton.forEach(op => {
@@ -124,66 +124,50 @@ operatorButton.forEach(op => {
             operator = e.target.textContent;
 
             console.log(operator); // Print the operator 
-
-        } else { // If equals button clicked
+        } else {
             switch (operator) { // Calculate and print output
                 case "+":
-                    console.log(parseInt(firstNum) + parseInt(secondNum));
-                    display.innerText = `${parseInt(firstNum) + parseInt(secondNum)}`;
+                    previousSum = `${parseInt(firstNum) + parseInt(secondNum)}`
+                    firstNum = previousSum;
+                    secondNum = '';
+                    operator = '';
+                    display.innerText = previousSum;
+                    console.log(previousSum);
                     break;
 
                 case "-":
-                    console.log(parseInt(firstNum) - parseInt(secondNum));
-                    display.innerText = `${parseInt(firstNum) - parseInt(secondNum)}`;
+                    previousSum = `${parseInt(firstNum) - parseInt(secondNum)}`
+                    firstNum = previousSum;
+                    secondNum = '';
+                    operator = '';
+                    display.innerText = previousSum;
+                    console.log(previousSum);
                     break;
 
                 case "*":
-                    console.log(parseInt(firstNum) * parseInt(secondNum));
-                    display.innerText = `${parseInt(firstNum) * parseInt(secondNum)}`;
+                    previousSum = `${parseInt(firstNum) * parseInt(secondNum)}`
+                    firstNum = previousSum;
+                    secondNum = '';
+                    operator = '';
+                    display.innerText = previousSum;
+                    console.log(previousSum);
                     break;
 
                 case "/":
-                    console.log(parseInt(firstNum) / parseInt(secondNum));
-                    display.innerText = `${parseInt(firstNum) / parseInt(secondNum)}`;
+                    previousSum = `${parseInt(firstNum) / parseInt(secondNum)}`
+                    firstNum = previousSum;
+                    secondNum = '';
+                    operator = '';
+                    display.innerText = previousSum;
+                    console.log(previousSum);
                     break;
 
                 default:
                     break;
             }
-        }
-
+        } // If equals button clicked
     });
 });
         </script>
     </body>
 </html>
-
-<!--
-
-
-numberButton.forEach((number) => {
-  number.addEventListener('click', function() {
-    storedNumber += number.value;
-    display.textContent = storedNumber;
-    console.log(display);
-    console.log(buttons);
-  })
-});
-
-
-click operator = get data value 
-operatorButton.forEach((operator) => {
-    operator.addEventListener('click', (e) => {
-      const value = e.target.dataset.value
-      display.innerText = value;
-      console.log(display);
-  ;  })
-  });
-
-  const value = e.target.dataset.value
-            firstNum += value;
-            display.textContent += value;
-            currentValue = +display.textContent;
-            console.log(firstNum);
-
--->
