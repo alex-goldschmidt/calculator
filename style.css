@@ -9,8 +9,11 @@
 .calculator-display {
     display: flex;
     background: lightgray;
-    height: 80px;
+    height: 72px;
     justify-content: center;
     align-items: center;
+    border: 4px solid orange;
 }
+
+
 
